@@ -1,0 +1,42 @@
+# Sibling projects kept out of this monorepo on purpose.
+# animon-web is a reference prototype with its own git repo — do not track or modify it here.
+/animon-web/
+# twntis-film is an unrelated project — never touched from this repo.
+/twntis-film/
+/doc-ignored/
+
+# Scratch / local only
+/tmp/
+.DS_Store
+*.log
+
+# Flutter / Dart (apps/mobile)
+apps/mobile/.dart_tool/
+apps/mobile/.flutter-plugins
+apps/mobile/.flutter-plugins-dependencies
+apps/mobile/.packages
+apps/mobile/build/
+apps/mobile/*.iml
+apps/mobile/ios/Pods/
+apps/mobile/ios/.symlinks/
+apps/mobile/ios/Flutter/Flutter.framework
+apps/mobile/ios/Flutter/Flutter.podspec
+apps/mobile/android/.gradle/
+apps/mobile/android/local.properties
+apps/mobile/**/*.g.dart
+apps/mobile/**/*.freezed.dart
+
+# Node (animon-identity-pilot)
+animon-identity-pilot/node_modules/
+animon-identity-pilot/.next/
+animon-identity-pilot/.env
+animon-identity-pilot/.env.local
+
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Claude Code local-only settings (never commit credentials/local permissions);
+# .claude/skills/ (Spec Kit commands) IS tracked on purpose so the whole team gets them.
+.claude/settings.local.json
