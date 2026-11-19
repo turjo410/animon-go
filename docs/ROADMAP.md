@@ -61,4 +61,5 @@ Run per [`docs/research/identity-pilot-setup-plan.md`](research/identity-pilot-s
 
 - Real-time multiplayer/PvP.
 - Any species identity claim outside the bounded cats/dogs pilot.
-- Self-hosting third-party biometric models without confirmed licensing (e.g., MiewID — currently restricted to Conservation X Labs-hosted use).
+- Self-hosting a third-party biometric model without confirmed permissive licensing (e.g., MiewID — hosted-only use restriction; MegaDescriptor — CC BY-NC, non-commercial only). Self-hosting a permissively-licensed, frozen pretrained extractor (e.g., DINOv2, Apache 2.0) for our own embedding + matching pipeline is in scope — see [`docs/decisions/2026-11-05-self-hosted-identity-embeddings.md`](decisions/2026-11-05-self-hosted-identity-embeddings.md).
+- Training a new vision backbone from scratch for individual animal recognition (infeasible at this team's scale/data).

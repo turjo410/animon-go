@@ -48,7 +48,7 @@ Feature code lands through the Spec Kit workflow (`/speckit-specify` → `/speck
 
 ## Working on the identity pilot
 
-A bounded experiment to evaluate real-world individual animal recognition (cats/dogs, via Petify) before committing it to the product. See [`docs/research/identity-pilot-setup-plan.md`](docs/research/identity-pilot-setup-plan.md) and [`animon-identity-pilot/README.md`](animon-identity-pilot/README.md). First spec: [`animon-identity-pilot/specs/001-cats-dogs-identity-pilot/spec.md`](animon-identity-pilot/specs/001-cats-dogs-identity-pilot/spec.md).
+A bounded experiment to evaluate real-world individual animal recognition (cats/dogs, via a self-hosted embedding + matching pipeline — see [`docs/decisions/2026-11-05-self-hosted-identity-embeddings.md`](docs/decisions/2026-11-05-self-hosted-identity-embeddings.md)) before committing it to the product. See [`docs/research/identity-pilot-setup-plan.md`](docs/research/identity-pilot-setup-plan.md) and [`animon-identity-pilot/README.md`](animon-identity-pilot/README.md). First spec: [`animon-identity-pilot/specs/001-cats-dogs-identity-pilot/spec.md`](animon-identity-pilot/specs/001-cats-dogs-identity-pilot/spec.md).
 
 ## Contributing / agent conventions
 

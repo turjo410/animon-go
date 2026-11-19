@@ -16,7 +16,7 @@ Define the business case, scope, and success criteria for **Animon GO**, a locat
 Animon GO exists today as two separate artifacts in this workspace:
 
 - **`animon-web/`** — a browser-based alpha (React + TypeScript + Vite) that proved the core discover → classify → collect → bond → battle loop using a generic TensorFlow.js image classifier. It is a **reference prototype only** — not the product being built, and not touched by this reorganization.
-- **`docs/research/`** — prior R&D on real-world individual animal identification (the long-term differentiator vs. generic "scan and get a monster" mechanics), recommending a staged pilot using Petnow's Petify service for cats/dogs before committing to a provider.
+- **`docs/research/`** — prior R&D on real-world individual animal identification (the long-term differentiator vs. generic "scan and get a monster" mechanics), recommending a staged pilot for cats/dogs. As of [`docs/decisions/2026-11-05-self-hosted-identity-embeddings.md`](decisions/2026-11-05-self-hosted-identity-embeddings.md), the pilot's default is a self-hosted embedding + matching pipeline rather than a paid commercial provider.
 
 The real product is a **native mobile application** (Flutter, iOS + Android) in the spirit of Pokémon GO: outdoor exploration, camera-based discovery, GPS-aware encounters, and social/competitive collection — not a browser app.
 
@@ -39,7 +39,7 @@ The real product is a **native mobile application** (Flutter, iOS + Android) in 
 | Engineering (identity pilot) | Validate animal recognition via `animon-identity-pilot` |
 | Players (end users) | A fun, trustworthy, low-friction collection game |
 | Animal subjects' owners / bystanders | Not photographed or tracked without meaningful consent and minimal retention |
-| Future provider partners (e.g., Petnow/Petify) | Commercial terms, API stability, licensing |
+| Hosted inference provider (for the pretrained embedding extractor) | API stability, cost at scale, and the option to self-host instead |
 
 ## 5. Scope
 
@@ -54,7 +54,7 @@ The real product is a **native mobile application** (Flutter, iOS + Android) in 
 
 - Camera-based discovery with family/species-level classification (reusing validated logic from the web alpha where applicable).
 - GPS-aware encounters and familiarity (not biometric identity) as the default experience.
-- A parallel, explicitly bounded **identity pilot** (cats/dogs only, via Petify) to test true individual recognition before it is a product feature.
+- A parallel, explicitly bounded **identity pilot** (cats/dogs only, via a self-hosted embedding + matching pipeline) to test true individual recognition before it is a product feature.
 - Squad collection, bonding/training, and turn-based PvE battles.
 - Accounts, server-validated progress, and anti-duplicate-claim rules (via Supabase).
 
@@ -81,12 +81,12 @@ The real product is a **native mobile application** (Flutter, iOS + Android) in 
 - Flutter + Supabase is the team's chosen stack for the mobile product (decided 2026-11-05).
 - The identity pilot proceeds as already planned in [`docs/research/identity-pilot-setup-plan.md`](research/identity-pilot-setup-plan.md), as a sub-project inside this monorepo rather than a fully separate repository.
 - `animon-web` remains a read-only reference; any reusable game-design decisions (elements, families, battle math) are *ported*, not assumed to be final.
-- No GPU training or hosting of third-party biometric models (e.g., MiewID) without confirming licensing terms.
+- No training a new vision backbone from scratch, and no self-hosting a third-party biometric model without confirming permissive licensing terms (e.g., MiewID is hosted-only; a frozen, Apache-2.0-licensed extractor like DINOv2 is confirmed usable — see [`docs/decisions/2026-11-05-self-hosted-identity-embeddings.md`](decisions/2026-11-05-self-hosted-identity-embeddings.md)).
 
 ## 8. Constraints
 
 - Small team — avoid scope that requires a dedicated AR/engine specialist until the core loop and identity pilot are proven.
-- Provider dependency risk: Petify pricing (~US$0.75/registered animal/month) must be revisited at scale before committing broadly.
+- Hosted inference cost at scale (per-call pricing for the embedding extractor) should be monitored; self-hosting the same frozen model becomes attractive if volume grows.
 - Legal/consent requirements for capturing images of animals (and incidentally, people/property) in public are unresolved and must be addressed before any public beta.
 
 ## 9. Risks

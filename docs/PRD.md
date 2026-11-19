@@ -55,7 +55,7 @@ Discover → Classify → Awaken → Collect → Bond/Train → Squad → Battle
 
 ### 5.2 Phase 2 — identity pilot integration
 
-- Ship the **identity pilot** (`animon-identity-pilot`, see [BRD §6](BRD.md#6-success-criteria) and [`docs/research/identity-pilot-setup-plan.md`](research/identity-pilot-setup-plan.md)) as a bounded, clearly-labeled experiment: cats/dogs only, via Petify, mock mode first.
+- Ship the **identity pilot** (`animon-identity-pilot`, see [BRD §6](BRD.md#6-success-criteria) and [`docs/research/identity-pilot-setup-plan.md`](research/identity-pilot-setup-plan.md)) as a bounded, clearly-labeled experiment: cats/dogs only, via a self-hosted embedding + matching pipeline (see [`docs/decisions/2026-11-05-self-hosted-identity-embeddings.md`](decisions/2026-11-05-self-hosted-identity-embeddings.md)), mock mode first.
 - If validated: integrate true individual recognition as an *additional, opt-in* layer on top of family-level discovery — a confidently-recognized registered animal reuses its existing record; an uncertain result never silently creates a new one.
 - If not validated: ship without it, keep family-level familiarity as the permanent default, and record the decision.
 

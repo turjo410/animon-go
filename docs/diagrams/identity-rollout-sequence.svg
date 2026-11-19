@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 460" font-family="Helvetica, Arial, sans-serif">
+  <rect x="0" y="0" width="780" height="460" fill="#fbfaf7"/>
+  <text x="390" y="32" text-anchor="middle" font-size="20" font-weight="700" fill="#2b332e">Recommended Rollout Sequence</text>
+  <text x="390" y="51" text-anchor="middle" font-size="12" fill="#6a6a6a">Research recommendation — does not change existing SRS/Architecture baselines on its own</text>
+
+  <defs>
+    <marker id="rArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#5b6b63"/>
+    </marker>
+    <marker id="rArrowAmber" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#8a7a52"/>
+    </marker>
+  </defs>
+
+  <!-- Phase 1 -->
+  <rect x="30" y="80" width="220" height="170" rx="12" fill="#eef4ee" stroke="#4f8a5b" stroke-width="2"/>
+  <text x="50" y="106" font-size="13.5" font-weight="700" fill="#2b332e">Phase 1</text>
+  <text x="50" y="126" font-size="13" font-weight="700" fill="#2b332e">Validate provider baseline</text>
+  <text x="50" y="150" font-size="11" fill="#4a544d">Petify capture flow for the</text>
+  <text x="50" y="165" font-size="11" fill="#4a544d">cats/dogs pilot only</text>
+  <text x="50" y="187" font-size="11" fill="#4a544d">Mock vs. live always</text>
+  <text x="50" y="202" font-size="11" fill="#4a544d">clearly labeled</text>
+  <text x="50" y="224" font-size="11" fill="#4a544d">No contextual scoring yet</text>
+
+  <!-- Phase 2 -->
+  <rect x="280" y="80" width="220" height="170" rx="12" fill="#eaf1f6" stroke="#3f7ea6" stroke-width="2"/>
+  <text x="300" y="106" font-size="13.5" font-weight="700" fill="#2b332e">Phase 2</text>
+  <text x="300" y="126" font-size="13" font-weight="700" fill="#2b332e">Shadow-mode scoring</text>
+  <text x="300" y="150" font-size="11" fill="#38424a">Record opt-in location +</text>
+  <text x="300" y="165" font-size="11" fill="#38424a">time with each encounter</text>
+  <text x="300" y="187" font-size="11" fill="#38424a">Compute re-rank score</text>
+  <text x="300" y="202" font-size="11" fill="#38424a">for comparison only</text>
+  <text x="300" y="224" font-size="11" fill="#38424a">Zero effect on any claim</text>
+
+  <!-- Phase 3 -->
+  <rect x="530" y="80" width="220" height="170" rx="12" fill="#f6efe6" stroke="#b98b3f" stroke-width="2"/>
+  <text x="550" y="106" font-size="13.5" font-weight="700" fill="#5a4320">Phase 3</text>
+  <text x="550" y="126" font-size="13" font-weight="700" fill="#5a4320">Promote combined decision</text>
+  <text x="550" y="150" font-size="11" fill="#5a4320">Only if error rate holds</text>
+  <text x="550" y="165" font-size="11" fill="#5a4320">under relocation + no-GPS</text>
+  <text x="550" y="180" font-size="11" fill="#5a4320">+ lookalike tests</text>
+  <text x="550" y="202" font-size="11" fill="#5a4320">Review stays available</text>
+  <text x="550" y="224" font-size="11" fill="#5a4320">for uncertain results</text>
+
+  <!-- Phase1 -> Phase2 -->
+  <line x1="250" y1="165" x2="280" y2="165" stroke="#5b6b63" stroke-width="2" marker-end="url(#rArrow)"/>
+
+  <!-- Phase2 -> gate -->
+  <line x1="420" y1="250" x2="440" y2="278" stroke="#5b6b63" stroke-width="2" marker-end="url(#rArrow)"/>
+
+  <!-- Gate diamond -->
+  <polygon points="515,270 605,312 515,354 425,312" fill="#fffaf0" stroke="#8a7a52" stroke-width="2"/>
+  <text x="515" y="305" text-anchor="middle" font-size="11" font-weight="700" fill="#5a4320">Held-out tests</text>
+  <text x="515" y="320" text-anchor="middle" font-size="11" font-weight="700" fill="#5a4320">pass?</text>
+
+  <!-- gate -> Phase3 (Yes) -->
+  <line x1="605" y1="312" x2="636" y2="250" stroke="#4f8a5b" stroke-width="2" marker-end="url(#rArrow)"/>
+  <text x="648" y="275" font-size="11" fill="#3f6b48">Yes</text>
+
+  <!-- gate -> Phase2 (No, loop back) -->
+  <path d="M 425,312 C 370,330 350,290 390,255" stroke="#8a7a52" stroke-width="2" fill="none" marker-end="url(#rArrowAmber)"/>
+  <text x="330" y="345" font-size="11" fill="#8a7a52">No — stay in shadow mode</text>
+
+  <text x="390" y="400" text-anchor="middle" font-size="11.5" fill="#6a6a6a">Promotion to Phase 3 requires a Spec Kit plan and a recorded decision in docs/decisions/.</text>
+  <text x="390" y="420" text-anchor="middle" font-size="11.5" fill="#6a6a6a">Location stays opt-in and approximate throughout (SRS FR-122, SEC-2).</text>
+</svg>

@@ -81,7 +81,7 @@ Every capture attempt — matched, unfamiliar, uncertain, or failed — is recor
 - **FR-005**: The system MUST let a tester view the existing record of an animal they have confidently matched.
 - **FR-006**: The system MUST allow at most one active collection claim per verified animal identity, enforced such that two concurrent claim attempts on the same unclaimed animal cannot both succeed.
 - **FR-007**: The system MUST show a tester who encounters an already-claimed animal an "already collected" result rather than an option to claim it.
-- **FR-008**: The system MUST provide a mock provider mode that requires no external network dependency and a live provider mode (Petify), with every stored result and every display explicitly labeled as mock or live.
+- **FR-008**: The system MUST provide a mock provider mode that requires no external network dependency and a live provider mode (self-hosted: a frozen pretrained embedding extractor plus our own similarity matching), with every stored result and every display explicitly labeled as mock or live.
 - **FR-009**: The system MUST record every capture attempt — including failed and uncertain ones — with its outcome and elapsed time.
 - **FR-010**: The system MUST route uncertain results into an operator review queue.
 - **FR-011**: The system MUST allow an authorized operator to record a review determination for a queued result, with that determination itself recorded (who, when, what was decided).
@@ -111,8 +111,8 @@ Every capture attempt — matched, unfamiliar, uncertain, or failed — is recor
 
 ## Assumptions
 
-- "Guided capture" means whatever capture flow the live provider (Petify) requires (e.g., a hosted capture experience) is wrapped behind this system's own guided-capture step; the exact UI/flow is a planning-level decision, not fixed by this spec.
+- "Guided capture" means a capture flow we design ourselves (framing guidance, basic anti-spoof/liveness checks) to produce a consistent, comparable photo for the self-hosted embedding extractor; since there is no vendor-prescribed flow, its exact UI is a planning-level decision, not fixed by this spec.
 - Mock mode is deterministic and seedable for testing (e.g., can be configured to return a specific outcome for a given test input), so that User Stories 1–3 are independently testable without live provider access.
-- "Eligible" animal, for claim purposes, means a confidently-matched, previously-unclaimed Animal Identity; eligibility criteria beyond that (e.g., minimum enrollment evidence) are a planning-level detail informed by the provider's own documentation.
+- "Eligible" animal, for claim purposes, means a confidently-matched, previously-unclaimed Animal Identity; eligibility criteria beyond that (e.g., minimum enrollment evidence, calibrated similarity threshold) are a planning-level detail informed by this pilot's own calibration evaluation.
 - Species scope for this pilot is cats and dogs only; birds, insects, and any other species are explicitly out of scope, per `docs/research/animal-identification-rnd.md`.
 - This pilot does not itself integrate with the mobile product (`apps/mobile`); it is a standalone evaluation whose results inform a later, separate integration decision (`docs/ROADMAP.md` Phase 2/3).

@@ -27,7 +27,7 @@ No custom ML model training, no AR/engine build-out, and no multiplayer/PvP unti
 
 - **Mobile:** Flutter (Dart), targeting iOS and Android from one codebase. Changing this requires a decision record in `docs/decisions/`.
 - **Backend:** Supabase (Postgres, Auth, Storage, Edge Functions). Postgres is required specifically because exclusive-claim and idempotency rules need real relational constraints and transactions.
-- **Identity pilot:** Next.js (TypeScript) + Supabase, with a provider interface (`mock` always available; `petify` as the first live implementation) — scoped and governed separately per `animon-identity-pilot/.specify/memory/constitution.md` and `docs/research/identity-pilot-setup-plan.md`.
+- **Identity pilot:** Next.js (TypeScript) + Supabase (+ `pgvector`), with a provider interface (`mock` always available; `self-hosted` embedding + matching as the first live implementation) — scoped and governed separately per `animon-identity-pilot/.specify/memory/constitution.md`, `docs/research/identity-pilot-setup-plan.md`, and `docs/decisions/2026-11-05-self-hosted-identity-embeddings.md`.
 - **Out of bounds:** `twntis-film/` is unrelated and must never be read, referenced, or modified from this project.
 
 ## Development workflow

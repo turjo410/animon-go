@@ -68,7 +68,7 @@ This document and the BRD/PRD/SRS are the **stable baseline** Spec Kit's generat
 - **Why Postgres matters here:** the one-active-claim-per-animal rule (SRS FR-133) and idempotent reward operations (SRS NFR-REL-1) need real relational constraints and transactions, not a best-effort NoSQL write.
 - **Identity provider boundary:** a server-side interface (Edge Function) with:
   - `mock` implementation — always available, clearly labeled, no external calls.
-  - `petify` implementation — calls Petnow's Petify API server-to-server; credentials never reach the client (SRS SEC-4).
+  - `self-hosted` implementation — calls a hosted inference endpoint running a frozen, permissively-licensed pretrained extractor (e.g., DINOv2) to get an image embedding, then matches it ourselves via Postgres `pgvector`; inference credentials never reach the client (SRS SEC-4). See [`docs/decisions/2026-11-05-self-hosted-identity-embeddings.md`](decisions/2026-11-05-self-hosted-identity-embeddings.md).
 - **Authoritative state:** currency (essence), XP, and collection claims are validated server-side (SRS FR-161); the client is a view over server state, with local caching for offline play.
 
 ## 5. Identity pilot architecture (`animon-identity-pilot`)
@@ -76,9 +76,9 @@ This document and the BRD/PRD/SRS are the **stable baseline** Spec Kit's generat
 A bounded sub-project, not the main product, scoped to answer: *can we reliably recognize the same real cat/dog across different players, phones, and days, without training our own model?* Per [`docs/research/identity-pilot-setup-plan.md`](research/identity-pilot-setup-plan.md):
 
 - Next.js (TypeScript) app for the capture/result/review experience and provider server routes.
-- Supabase Auth + Postgres, shared infrastructure choice with the main product (not necessarily the same project/instance at pilot stage).
-- Petify as the live provider; a mock provider for development, always clearly distinguished in stored results.
-- Its own Spec Kit instance (`animon-identity-pilot/.specify/`), since it has its own constitution emphasis (no model training, server-verified results, exclusive claims) distinct from the mobile product's broader scope.
+- Supabase Auth + Postgres (+ `pgvector`), shared infrastructure choice with the main product (not necessarily the same project/instance at pilot stage).
+- A self-hosted embedding + matching pipeline as the live provider: a frozen pretrained extractor (e.g., DINOv2) for embeddings, our own cosine-similarity matching and calibrated thresholds in Postgres; a mock provider for development, always clearly distinguished in stored results. A commercial provider (e.g., Petify) is no longer the default — it may be added later only as a comparison point.
+- Its own Spec Kit instance (`animon-identity-pilot/.specify/`), since it has its own constitution emphasis (no new-backbone training, server-verified results, exclusive claims) distinct from the mobile product's broader scope.
 
 This sub-project lives inside the monorepo (per the chosen repo layout) but is tracked with its own `specs/` and does not share Flutter/Dart tooling with `apps/mobile`.
 
@@ -99,8 +99,8 @@ This sub-project lives inside the monorepo (per the chosen repo layout) but is t
                               [Flutter app renders result]
 
 (Identity pilot, separate flow)
-[Capture] → [animon-identity-pilot server route] → [Petify / mock] → server-verified result
-                                                                   → [Postgres: animal_identity, exclusive claim]
+[Capture] → [animon-identity-pilot server route] → [self-hosted embedding + match / mock] → server-verified result
+                                                                   → [Postgres + pgvector: animal_identity, exclusive claim]
 ```
 
 ## 7. Decisions log
@@ -110,3 +110,5 @@ Significant, hard-to-reverse decisions (stack choices, provider commitments, sco
 - 2026-11-05 — Mobile stack: Flutter (over React Native/Native/Unity) — chosen for cross-platform velocity with acceptable AR/map plugin support.
 - 2026-11-05 — Backend: Supabase (Postgres + Auth + Storage) — chosen for relational integrity needed by exclusive-claim rules, and to match the already-planned identity pilot.
 - 2026-11-05 — Repository layout: single monorepo at `Animon Go/` root; `animon-web` and `twntis-film` excluded from version control here.
+- 2026-11-05 — Identity pilot: self-hosted embedding + `pgvector` matching replaces Petify as the default live implementation, to avoid recurring per-pet vendor cost and dependency — see [`docs/decisions/2026-11-05-self-hosted-identity-embeddings.md`](decisions/2026-11-05-self-hosted-identity-embeddings.md).
+- 2026-11-08 — Model licence screen (YOLO/AGPL, MobileCLIP, OpenAI CLIP weights, MiewID ruled out; ImageNet weights evaluation-only) and an offline evaluation harness at `tools/model-eval/` (research tooling, not a product stack) — see [`docs/decisions/2026-11-08-model-licence-screen.md`](decisions/2026-11-08-model-licence-screen.md).

@@ -32,4 +32,4 @@
 ## Notes
 
 - All items pass. Ready for `/speckit-clarify` (optional) or `/speckit-plan`.
-- Provider-specific integration detail (exact Petify API calls, hosted-capture mechanics) is intentionally deferred to `plan.md` — this spec stays at the "what/why" level per the pilot's own constitution (small, reproducible implementation).
+- Provider-specific integration detail (exact embedding-inference calls, capture mechanics) is intentionally deferred to `plan.md` — this spec stays at the "what/why" level per the pilot's own constitution (small, reproducible implementation).

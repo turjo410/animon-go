@@ -1,0 +1,171 @@
+[
+ {
+  "name": "Fire beats Earth (advantaged)",
+  "input": {
+   "attacker_id": "cindertail",
+   "attacker_level": 1,
+   "defender_id": "acornix",
+   "power": 1,
+   "guard": false
+  },
+  "expected": {
+   "damage": 33
+  }
+ },
+ {
+  "name": "Fire vs Water (neutral)",
+  "input": {
+   "attacker_id": "cindertail",
+   "attacker_level": 1,
+   "defender_id": "dewfin",
+   "power": 1,
+   "guard": false
+  },
+  "expected": {
+   "damage": 25
+  }
+ },
+ {
+  "name": "Water beats Fire",
+  "input": {
+   "attacker_id": "dewfin",
+   "attacker_level": 1,
+   "defender_id": "cindertail",
+   "power": 1,
+   "guard": false
+  },
+  "expected": {
+   "damage": 29
+  }
+ },
+ {
+  "name": "Earth beats Water",
+  "input": {
+   "attacker_id": "mosslyn",
+   "attacker_level": 1,
+   "defender_id": "dewfin",
+   "power": 1,
+   "guard": false
+  },
+  "expected": {
+   "damage": 27
+  }
+ },
+ {
+  "name": "Air beats Earth",
+  "input": {
+   "attacker_id": "zephruff",
+   "attacker_level": 1,
+   "defender_id": "mosslyn",
+   "power": 1,
+   "guard": false
+  },
+  "expected": {
+   "damage": 29
+  }
+ },
+ {
+  "name": "Earth vs Air (neutral)",
+  "input": {
+   "attacker_id": "mosslyn",
+   "attacker_level": 1,
+   "defender_id": "zephruff",
+   "power": 1,
+   "guard": false
+  },
+  "expected": {
+   "damage": 20
+  }
+ },
+ {
+  "name": "Light beats Dark",
+  "input": {
+   "attacker_id": "lumoth",
+   "attacker_level": 1,
+   "defender_id": "nightpurr",
+   "power": 1,
+   "guard": false
+  },
+  "expected": {
+   "damage": 34
+  }
+ },
+ {
+  "name": "Dark beats Light",
+  "input": {
+   "attacker_id": "nightpurr",
+   "attacker_level": 1,
+   "defender_id": "solcat",
+   "power": 1,
+   "guard": false
+  },
+  "expected": {
+   "damage": 33
+  }
+ },
+ {
+  "name": "Guard halves damage",
+  "input": {
+   "attacker_id": "cindertail",
+   "attacker_level": 1,
+   "defender_id": "acornix",
+   "power": 1,
+   "guard": true
+  },
+  "expected": {
+   "damage": 16
+  }
+ },
+ {
+  "name": "Skill power 1.65",
+  "input": {
+   "attacker_id": "mosslyn",
+   "attacker_level": 5,
+   "defender_id": "breezlet",
+   "power": 1.65,
+   "guard": false
+  },
+  "expected": {
+   "damage": 49
+  }
+ },
+ {
+  "name": "Level scaling (+2 atk/level)",
+  "input": {
+   "attacker_id": "cindertail",
+   "attacker_level": 4,
+   "defender_id": "petalume",
+   "power": 1,
+   "guard": false
+  },
+  "expected": {
+   "damage": 42
+  }
+ },
+ {
+  "name": "Floor of 4",
+  "input": {
+   "attacker_id": "breezlet",
+   "attacker_level": 1,
+   "defender_id": "acornix",
+   "power": 0.1,
+   "guard": false
+  },
+  "expected": {
+   "damage": 4
+  }
+ },
+ {
+  "name": "Wave-scaled enemy power",
+  "input": {
+   "attacker_id": "acornix",
+   "attacker_level": 1,
+   "defender_id": "mosslyn",
+   "power": 1.24,
+   "guard": false
+  },
+  "expected": {
+   "damage": 22
+  }
+ }
+]

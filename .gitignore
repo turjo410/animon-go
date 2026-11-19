@@ -40,3 +40,19 @@ animon-identity-pilot/.env.local
 # Claude Code local-only settings (never commit credentials/local permissions);
 # .claude/skills/ (Spec Kit commands) IS tracked on purpose so the whole team gets them.
 .claude/settings.local.json
+
+# Model evaluation harness (tools/model-eval): photos of real animals/participants,
+# results and the Python venv never go into git (identity pilot constitution, FR-013).
+tools/model-eval/.venv/
+tools/model-eval/data/
+tools/model-eval/results/
+tools/model-eval/__pycache__/
+**/__pycache__/
+
+# Kept local, not published: location/time experiment and its notebook, personal photos.
+tools/model-eval/notebooks/
+tools/model-eval/context_sim.py
+tools/model-eval/spatiotemporal.py
+docs/research/spatiotemporal-identity-scoring.md
+research/*.jpeg
+research/*.jpg

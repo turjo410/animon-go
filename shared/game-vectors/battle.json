@@ -1,0 +1,637 @@
+[
+ {
+  "name": "initial state, starter squad, wave 1",
+  "input": {
+   "allies": [
+    {
+     "id": "mosslyn",
+     "level": 5
+    },
+    {
+     "id": "cindertail",
+     "level": 4
+    },
+    {
+     "id": "dewfin",
+     "level": 3
+    }
+   ],
+   "wave": 1,
+   "actions": []
+  },
+  "expected": {
+   "status": "active",
+   "turn": 1,
+   "accepted_actions": 0,
+   "allies_hp": [
+    134,
+    123,
+    107
+   ],
+   "allies_max_hp": [
+    134,
+    123,
+    107
+   ],
+   "enemies_hp": [
+    115,
+    93,
+    104
+   ],
+   "enemies_max_hp": [
+    115,
+    93,
+    104
+   ],
+   "cooldowns": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     0
+    ]
+   ],
+   "active": 0,
+   "target": 0
+  }
+ },
+ {
+  "name": "skill on cooldown is rejected (no turn used)",
+  "input": {
+   "allies": [
+    {
+     "id": "mosslyn",
+     "level": 5
+    },
+    {
+     "id": "cindertail",
+     "level": 4
+    },
+    {
+     "id": "dewfin",
+     "level": 3
+    }
+   ],
+   "wave": 1,
+   "actions": [
+    "skill",
+    "skill"
+   ]
+  },
+  "expected": {
+   "status": "active",
+   "turn": 2,
+   "accepted_actions": 1,
+   "allies_hp": [
+    117,
+    123,
+    107
+   ],
+   "allies_max_hp": [
+    134,
+    123,
+    107
+   ],
+   "enemies_hp": [
+    69,
+    93,
+    104
+   ],
+   "enemies_max_hp": [
+    115,
+    93,
+    104
+   ],
+   "cooldowns": [
+    [
+     2,
+     0
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     0
+    ]
+   ],
+   "active": 0,
+   "target": 0
+  }
+ },
+ {
+  "name": "skill cooldown expires after 2 actions",
+  "input": {
+   "allies": [
+    {
+     "id": "mosslyn",
+     "level": 5
+    },
+    {
+     "id": "cindertail",
+     "level": 4
+    },
+    {
+     "id": "dewfin",
+     "level": 3
+    }
+   ],
+   "wave": 1,
+   "actions": [
+    "skill",
+    "basic",
+    "skill"
+   ]
+  },
+  "expected": {
+   "status": "active",
+   "turn": 3,
+   "accepted_actions": 2,
+   "allies_hp": [
+    92,
+    123,
+    107
+   ],
+   "allies_max_hp": [
+    134,
+    123,
+    107
+   ],
+   "enemies_hp": [
+    44,
+    93,
+    104
+   ],
+   "enemies_max_hp": [
+    115,
+    93,
+    104
+   ],
+   "cooldowns": [
+    [
+     1,
+     0
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     0
+    ]
+   ],
+   "active": 0,
+   "target": 0
+  }
+ },
+ {
+  "name": "heal is capped at max HP",
+  "input": {
+   "allies": [
+    {
+     "id": "mosslyn",
+     "level": 5
+    },
+    {
+     "id": "cindertail",
+     "level": 4
+    },
+    {
+     "id": "dewfin",
+     "level": 3
+    }
+   ],
+   "wave": 1,
+   "actions": [
+    "heal"
+   ]
+  },
+  "expected": {
+   "status": "active",
+   "turn": 2,
+   "accepted_actions": 1,
+   "allies_hp": [
+    117,
+    123,
+    107
+   ],
+   "allies_max_hp": [
+    134,
+    123,
+    107
+   ],
+   "enemies_hp": [
+    115,
+    93,
+    104
+   ],
+   "enemies_max_hp": [
+    115,
+    93,
+    104
+   ],
+   "cooldowns": [
+    [
+     0,
+     3
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     0
+    ]
+   ],
+   "active": 0,
+   "target": 0
+  }
+ },
+ {
+  "name": "heal on cooldown is rejected",
+  "input": {
+   "allies": [
+    {
+     "id": "mosslyn",
+     "level": 5
+    },
+    {
+     "id": "cindertail",
+     "level": 4
+    },
+    {
+     "id": "dewfin",
+     "level": 3
+    }
+   ],
+   "wave": 1,
+   "actions": [
+    "basic",
+    "heal",
+    "heal"
+   ]
+  },
+  "expected": {
+   "status": "active",
+   "turn": 3,
+   "accepted_actions": 2,
+   "allies_hp": [
+    109,
+    123,
+    107
+   ],
+   "allies_max_hp": [
+    134,
+    123,
+    107
+   ],
+   "enemies_hp": [
+    90,
+    93,
+    104
+   ],
+   "enemies_max_hp": [
+    115,
+    93,
+    104
+   ],
+   "cooldowns": [
+    [
+     0,
+     3
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     0
+    ]
+   ],
+   "active": 0,
+   "target": 0
+  }
+ },
+ {
+  "name": "guard then basic",
+  "input": {
+   "allies": [
+    {
+     "id": "mosslyn",
+     "level": 5
+    },
+    {
+     "id": "cindertail",
+     "level": 4
+    },
+    {
+     "id": "dewfin",
+     "level": 3
+    }
+   ],
+   "wave": 1,
+   "actions": [
+    "guard",
+    "basic"
+   ]
+  },
+  "expected": {
+   "status": "active",
+   "turn": 3,
+   "accepted_actions": 2,
+   "allies_hp": [
+    101,
+    123,
+    107
+   ],
+   "allies_max_hp": [
+    134,
+    123,
+    107
+   ],
+   "enemies_hp": [
+    90,
+    93,
+    104
+   ],
+   "enemies_max_hp": [
+    115,
+    93,
+    104
+   ],
+   "cooldowns": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     0
+    ]
+   ],
+   "active": 0,
+   "target": 0
+  }
+ },
+ {
+  "name": "full victory (greedy policy)",
+  "input": {
+   "allies": [
+    {
+     "id": "mosslyn",
+     "level": 5
+    },
+    {
+     "id": "cindertail",
+     "level": 4
+    },
+    {
+     "id": "dewfin",
+     "level": 3
+    }
+   ],
+   "wave": 1,
+   "actions": [
+    "skill",
+    "basic",
+    "basic",
+    "skill",
+    "basic",
+    "heal",
+    "skill",
+    "basic",
+    "basic",
+    "skill",
+    "basic"
+   ]
+  },
+  "expected": {
+   "status": "victory",
+   "turn": 11,
+   "accepted_actions": 11,
+   "allies_hp": [
+    0,
+    105,
+    107
+   ],
+   "allies_max_hp": [
+    134,
+    123,
+    107
+   ],
+   "enemies_hp": [
+    0,
+    0,
+    0
+   ],
+   "enemies_max_hp": [
+    115,
+    93,
+    104
+   ],
+   "cooldowns": [
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     0,
+     0
+    ]
+   ],
+   "active": 1,
+   "target": 2
+  }
+ },
+ {
+  "name": "full defeat (guard only, level-1 squad)",
+  "input": {
+   "allies": [
+    {
+     "id": "breezlet",
+     "level": 1
+    },
+    {
+     "id": "petalume",
+     "level": 1
+    },
+    {
+     "id": "acornix",
+     "level": 1
+    }
+   ],
+   "wave": 1,
+   "actions": [
+    "guard",
+    "guard",
+    "guard",
+    "guard",
+    "guard",
+    "guard",
+    "guard",
+    "guard",
+    "guard",
+    "guard",
+    "guard",
+    "guard",
+    "guard",
+    "guard",
+    "guard",
+    "guard",
+    "guard",
+    "guard",
+    "guard",
+    "guard",
+    "guard",
+    "guard",
+    "guard",
+    "guard",
+    "guard",
+    "guard",
+    "guard",
+    "guard",
+    "guard",
+    "guard",
+    "guard",
+    "guard",
+    "guard",
+    "guard"
+   ]
+  },
+  "expected": {
+   "status": "defeat",
+   "turn": 35,
+   "accepted_actions": 34,
+   "allies_hp": [
+    0,
+    0,
+    0
+   ],
+   "allies_max_hp": [
+    90,
+    98,
+    115
+   ],
+   "enemies_hp": [
+    115,
+    93,
+    104
+   ],
+   "enemies_max_hp": [
+    115,
+    93,
+    104
+   ],
+   "cooldowns": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     0
+    ]
+   ],
+   "active": 2,
+   "target": 0
+  }
+ },
+ {
+  "name": "actions after victory are ignored",
+  "input": {
+   "allies": [
+    {
+     "id": "mosslyn",
+     "level": 5
+    },
+    {
+     "id": "cindertail",
+     "level": 4
+    },
+    {
+     "id": "dewfin",
+     "level": 3
+    }
+   ],
+   "wave": 1,
+   "actions": [
+    "skill",
+    "basic",
+    "basic",
+    "skill",
+    "basic",
+    "heal",
+    "skill",
+    "basic",
+    "basic",
+    "skill",
+    "basic",
+    "basic",
+    "skill"
+   ]
+  },
+  "expected": {
+   "status": "victory",
+   "turn": 11,
+   "accepted_actions": 11,
+   "allies_hp": [
+    0,
+    105,
+    107
+   ],
+   "allies_max_hp": [
+    134,
+    123,
+    107
+   ],
+   "enemies_hp": [
+    0,
+    0,
+    0
+   ],
+   "enemies_max_hp": [
+    115,
+    93,
+    104
+   ],
+   "cooldowns": [
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     0,
+     0
+    ]
+   ],
+   "active": 1,
+   "target": 2
+  }
+ }
+]

@@ -1,0 +1,123 @@
+[
+ {
+  "name": "train: +1 level, +5 bond",
+  "input": {
+   "op": "train",
+   "level": 4,
+   "bond": 24
+  },
+  "expected": {
+   "level": 5,
+   "bond": 29
+  }
+ },
+ {
+  "name": "train: bond capped at 100",
+  "input": {
+   "op": "train",
+   "level": 9,
+   "bond": 98
+  },
+  "expected": {
+   "level": 10,
+   "bond": 100
+  }
+ },
+ {
+  "name": "discover owned: +1 level, +15 bond",
+  "input": {
+   "op": "discover_owned",
+   "level": 3,
+   "bond": 18
+  },
+  "expected": {
+   "level": 4,
+   "bond": 33
+  }
+ },
+ {
+  "name": "discover owned: bond capped",
+  "input": {
+   "op": "discover_owned",
+   "level": 3,
+   "bond": 90
+  },
+  "expected": {
+   "level": 4,
+   "bond": 100
+  }
+ },
+ {
+  "name": "discover new: L1, bond 15",
+  "input": {
+   "op": "discover_new"
+  },
+  "expected": {
+   "level": 1,
+   "bond": 15
+  }
+ },
+ {
+  "name": "player level 249 xp",
+  "input": {
+   "op": "player_level",
+   "xp": 249
+  },
+  "expected": {
+   "level": 1
+  }
+ },
+ {
+  "name": "player level 250 xp",
+  "input": {
+   "op": "player_level",
+   "xp": 250
+  },
+  "expected": {
+   "level": 2
+  }
+ },
+ {
+  "name": "player level 0 xp",
+  "input": {
+   "op": "player_level",
+   "xp": 0
+  },
+  "expected": {
+   "level": 1
+  }
+ },
+ {
+  "name": "max hp mosslyn L5",
+  "input": {
+   "op": "max_hp",
+   "creature_id": "mosslyn",
+   "level": 5
+  },
+  "expected": {
+   "max_hp": 134
+  }
+ },
+ {
+  "name": "max hp lumoth L1",
+  "input": {
+   "op": "max_hp",
+   "creature_id": "lumoth",
+   "level": 1
+  },
+  "expected": {
+   "max_hp": 90
+  }
+ },
+ {
+  "name": "effective attack cindertail L4",
+  "input": {
+   "op": "effective_attack",
+   "creature_id": "cindertail",
+   "level": 4
+  },
+  "expected": {
+   "attack": 36
+  }
+ }
+]

@@ -1,0 +1,396 @@
+[
+ {
+  "name": "same family, place and week",
+  "input": {
+   "current": {
+    "family": "feline",
+    "time": 864000000,
+    "lat": 23.81,
+    "lon": 90.41
+   },
+   "history": [
+    {
+     "family": "feline",
+     "time": 863900000,
+     "lat": 23.81,
+     "lon": 90.41
+    }
+   ]
+  },
+  "expected": {
+   "tag": "probablyFamiliar"
+  }
+ },
+ {
+  "name": "too far away",
+  "input": {
+   "current": {
+    "family": "feline",
+    "time": 864000000,
+    "lat": 23.81,
+    "lon": 90.41
+   },
+   "history": [
+    {
+     "family": "feline",
+     "time": 863900000,
+     "lat": 24,
+     "lon": 90.41
+    }
+   ]
+  },
+  "expected": {
+   "tag": "newEncounter"
+  }
+ },
+ {
+  "name": "different family",
+  "input": {
+   "current": {
+    "family": "feline",
+    "time": 864000000,
+    "lat": 23.81,
+    "lon": 90.41
+   },
+   "history": [
+    {
+     "family": "canine",
+     "time": 863900000,
+     "lat": 23.81,
+     "lon": 90.41
+    }
+   ]
+  },
+  "expected": {
+   "tag": "newEncounter"
+  }
+ },
+ {
+  "name": "two prior matches -> returning",
+  "input": {
+   "current": {
+    "family": "feline",
+    "time": 864000000,
+    "lat": 23.81,
+    "lon": 90.41
+   },
+   "history": [
+    {
+     "family": "feline",
+     "time": 691200000,
+     "lat": 23.81,
+     "lon": 90.41
+    },
+    {
+     "family": "feline",
+     "time": 777600000,
+     "lat": 23.81,
+     "lon": 90.41
+    }
+   ]
+  },
+  "expected": {
+   "tag": "returningPresence"
+  }
+ },
+ {
+  "name": "exactly 7 days ago -> new",
+  "input": {
+   "current": {
+    "family": "feline",
+    "time": 864000000,
+    "lat": 23.81,
+    "lon": 90.41
+   },
+   "history": [
+    {
+     "family": "feline",
+     "time": 259200000,
+     "lat": 23.81,
+     "lon": 90.41
+    }
+   ]
+  },
+  "expected": {
+   "tag": "newEncounter"
+  }
+ },
+ {
+  "name": "future-dated history ignored",
+  "input": {
+   "current": {
+    "family": "feline",
+    "time": 864000000,
+    "lat": 23.81,
+    "lon": 90.41
+   },
+   "history": [
+    {
+     "family": "feline",
+     "time": 864001000,
+     "lat": 23.81,
+     "lon": 90.41
+    }
+   ]
+  },
+  "expected": {
+   "tag": "newEncounter"
+  }
+ },
+ {
+  "name": "insect within 60 m (44 m)",
+  "input": {
+   "current": {
+    "family": "insect",
+    "time": 864000000,
+    "lat": 23.81,
+    "lon": 90.41
+   },
+   "history": [
+    {
+     "family": "insect",
+     "time": 863999000,
+     "lat": 23.8104,
+     "lon": 90.41
+    }
+   ]
+  },
+  "expected": {
+   "tag": "probablyFamiliar"
+  }
+ },
+ {
+  "name": "insect outside 60 m (78 m)",
+  "input": {
+   "current": {
+    "family": "insect",
+    "time": 864000000,
+    "lat": 23.81,
+    "lon": 90.41
+   },
+   "history": [
+    {
+     "family": "insect",
+     "time": 863999000,
+     "lat": 23.8107,
+     "lon": 90.41
+    }
+   ]
+  },
+  "expected": {
+   "tag": "newEncounter"
+  }
+ },
+ {
+  "name": "canine within 300 m (278 m)",
+  "input": {
+   "current": {
+    "family": "canine",
+    "time": 864000000,
+    "lat": 23.81,
+    "lon": 90.41
+   },
+   "history": [
+    {
+     "family": "canine",
+     "time": 863999000,
+     "lat": 23.8125,
+     "lon": 90.41
+    }
+   ]
+  },
+  "expected": {
+   "tag": "probablyFamiliar"
+  }
+ },
+ {
+  "name": "demo matches demo",
+  "input": {
+   "current": {
+    "family": "avian",
+    "time": 432000000,
+    "demo": true
+   },
+   "history": [
+    {
+     "family": "avian",
+     "time": 345600000,
+     "demo": true
+    }
+   ]
+  },
+  "expected": {
+   "tag": "probablyFamiliar"
+  }
+ },
+ {
+  "name": "two demo matches -> returning",
+  "input": {
+   "current": {
+    "family": "avian",
+    "time": 432000000,
+    "demo": true
+   },
+   "history": [
+    {
+     "family": "avian",
+     "time": 345600000,
+     "demo": true
+    },
+    {
+     "family": "avian",
+     "time": 259200000,
+     "demo": true
+    }
+   ]
+  },
+  "expected": {
+   "tag": "returningPresence"
+  }
+ },
+ {
+  "name": "demo never matches real",
+  "input": {
+   "current": {
+    "family": "feline",
+    "time": 864000000,
+    "lat": 23.81,
+    "lon": 90.41,
+    "demo": true
+   },
+   "history": [
+    {
+     "family": "feline",
+     "time": 863999000,
+     "lat": 23.81,
+     "lon": 90.41
+    }
+   ]
+  },
+  "expected": {
+   "tag": "newEncounter"
+  }
+ },
+ {
+  "name": "(R8) no location: family + recency fallback",
+  "input": {
+   "current": {
+    "family": "feline",
+    "time": 432000000
+   },
+   "history": [
+    {
+     "family": "feline",
+     "time": 345600000
+    }
+   ]
+  },
+  "expected": {
+   "tag": "probablyFamiliar"
+  }
+ },
+ {
+  "name": "(R8) no location: capped below returning",
+  "input": {
+   "current": {
+    "family": "feline",
+    "time": 432000000
+   },
+   "history": [
+    {
+     "family": "feline",
+     "time": 345600000
+    },
+    {
+     "family": "feline",
+     "time": 259200000
+    }
+   ]
+  },
+  "expected": {
+   "tag": "probablyFamiliar"
+  }
+ },
+ {
+  "name": "(R8) current located, history not: fallback",
+  "input": {
+   "current": {
+    "family": "feline",
+    "time": 864000000,
+    "lat": 23.81,
+    "lon": 90.41
+   },
+   "history": [
+    {
+     "family": "feline",
+     "time": 777600000
+    }
+   ]
+  },
+  "expected": {
+   "tag": "probablyFamiliar"
+  }
+ },
+ {
+  "name": "(R8) one located + one unlocated match: capped",
+  "input": {
+   "current": {
+    "family": "feline",
+    "time": 864000000,
+    "lat": 23.81,
+    "lon": 90.41
+   },
+   "history": [
+    {
+     "family": "feline",
+     "time": 777600000,
+     "lat": 23.81,
+     "lon": 90.41
+    },
+    {
+     "family": "feline",
+     "time": 691200000
+    }
+   ]
+  },
+  "expected": {
+   "tag": "probablyFamiliar"
+  }
+ },
+ {
+  "name": "(R8) no location but older than 7 days -> new",
+  "input": {
+   "current": {
+    "family": "feline",
+    "time": 1728000000
+   },
+   "history": [
+    {
+     "family": "feline",
+     "time": 864000000
+    }
+   ]
+  },
+  "expected": {
+   "tag": "newEncounter"
+  }
+ },
+ {
+  "name": "(R8) no location, different family -> new",
+  "input": {
+   "current": {
+    "family": "feline",
+    "time": 432000000
+   },
+   "history": [
+    {
+     "family": "rodent",
+     "time": 345600000
+    }
+   ]
+  },
+  "expected": {
+   "tag": "newEncounter"
+  }
+ }
+]

@@ -1,0 +1,152 @@
+[
+ {
+  "name": "Feline / day",
+  "input": {
+   "family": "feline",
+   "attunement": "day"
+  },
+  "expected": {
+   "creature_id": "mosslyn"
+  }
+ },
+ {
+  "name": "Feline / rain",
+  "input": {
+   "family": "feline",
+   "attunement": "rain"
+  },
+  "expected": {
+   "creature_id": "solcat"
+  }
+ },
+ {
+  "name": "Feline / night",
+  "input": {
+   "family": "feline",
+   "attunement": "night"
+  },
+  "expected": {
+   "creature_id": "nightpurr"
+  }
+ },
+ {
+  "name": "Canine / day",
+  "input": {
+   "family": "canine",
+   "attunement": "day"
+  },
+  "expected": {
+   "creature_id": "cindertail"
+  }
+ },
+ {
+  "name": "Canine / rain",
+  "input": {
+   "family": "canine",
+   "attunement": "rain"
+  },
+  "expected": {
+   "creature_id": "brookhound"
+  }
+ },
+ {
+  "name": "Canine / night",
+  "input": {
+   "family": "canine",
+   "attunement": "night"
+  },
+  "expected": {
+   "creature_id": "zephruff"
+  }
+ },
+ {
+  "name": "Avian / day",
+  "input": {
+   "family": "avian",
+   "attunement": "day"
+  },
+  "expected": {
+   "creature_id": "breezlet"
+  }
+ },
+ {
+  "name": "Avian / rain",
+  "input": {
+   "family": "avian",
+   "attunement": "rain"
+  },
+  "expected": {
+   "creature_id": "dewfin"
+  }
+ },
+ {
+  "name": "Avian / night",
+  "input": {
+   "family": "avian",
+   "attunement": "night"
+  },
+  "expected": {
+   "creature_id": "duskwing"
+  }
+ },
+ {
+  "name": "Rodent / day",
+  "input": {
+   "family": "rodent",
+   "attunement": "day"
+  },
+  "expected": {
+   "creature_id": "acornix"
+  }
+ },
+ {
+  "name": "Rodent / rain",
+  "input": {
+   "family": "rodent",
+   "attunement": "rain"
+  },
+  "expected": {
+   "creature_id": "sparkit"
+  }
+ },
+ {
+  "name": "Rodent / night",
+  "input": {
+   "family": "rodent",
+   "attunement": "night"
+  },
+  "expected": {
+   "creature_id": "moonchest"
+  }
+ },
+ {
+  "name": "Insect / day",
+  "input": {
+   "family": "insect",
+   "attunement": "day"
+  },
+  "expected": {
+   "creature_id": "petalume"
+  }
+ },
+ {
+  "name": "Insect / rain",
+  "input": {
+   "family": "insect",
+   "attunement": "rain"
+  },
+  "expected": {
+   "creature_id": "mistmoth"
+  }
+ },
+ {
+  "name": "Insect / night",
+  "input": {
+   "family": "insect",
+   "attunement": "night"
+  },
+  "expected": {
+   "creature_id": "lumoth"
+  }
+ }
+]

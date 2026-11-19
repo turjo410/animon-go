@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 620" font-family="Helvetica, Arial, sans-serif">
+  <rect x="0" y="0" width="780" height="620" fill="#fbfaf7"/>
+  <text x="390" y="34" text-anchor="middle" font-size="20" font-weight="700" fill="#2b332e">Identity Decision Pipeline — Cats/Dogs Pilot</text>
+  <text x="390" y="54" text-anchor="middle" font-size="12" fill="#6a6a6a">Applies only inside the bounded identity pilot — never the default family-level familiarity</text>
+
+  <defs>
+    <marker id="pArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#5b6b63"/>
+    </marker>
+    <marker id="pArrowAmber" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#8a7a52"/>
+    </marker>
+  </defs>
+
+  <!-- Main pipeline connectors -->
+  <g stroke="#5b6b63" stroke-width="2" marker-end="url(#pArrow)" fill="none">
+    <line x1="180" y1="126" x2="180" y2="142"/>
+    <line x1="180" y1="198" x2="180" y2="214"/>
+    <line x1="180" y1="270" x2="180" y2="286"/>
+    <line x1="180" y1="342" x2="180" y2="358"/>
+    <line x1="180" y1="414" x2="180" y2="430"/>
+  </g>
+
+  <!-- Pipeline steps -->
+  <g font-size="13.5" fill="#2b332e">
+    <g>
+      <rect x="30" y="70" width="300" height="56" rx="10" fill="#eef4ee" stroke="#4f8a5b" stroke-width="2"/>
+      <text x="48" y="93" font-weight="700">1. Capture Evidence</text>
+      <text x="48" y="111" font-size="11" fill="#4a544d">ID, time, location, quality, mock/live</text>
+    </g>
+    <g>
+      <rect x="30" y="142" width="300" height="56" rx="10" fill="#eef4ee" stroke="#4f8a5b" stroke-width="2"/>
+      <text x="48" y="165" font-weight="700">2. Retrieve Candidates</text>
+      <text x="48" y="183" font-size="11" fill="#4a544d">Broad visual match, not a tiny geofence</text>
+    </g>
+    <g>
+      <rect x="30" y="214" width="300" height="56" rx="10" fill="#eef4ee" stroke="#4f8a5b" stroke-width="2"/>
+      <text x="48" y="237" font-weight="700">3. Estimate Plausibility</text>
+      <text x="48" y="255" font-size="11" fill="#4a544d">History, elapsed time, uncertainty region</text>
+    </g>
+    <g>
+      <rect x="30" y="286" width="300" height="56" rx="10" fill="#eaf1f6" stroke="#3f7ea6" stroke-width="2"/>
+      <text x="48" y="309" font-weight="700">4. Re-rank Conservatively</text>
+      <text x="48" y="327" font-size="11" fill="#38424a">Context bounded (λ); visuals still lead</text>
+    </g>
+    <g>
+      <rect x="30" y="358" width="300" height="56" rx="10" fill="#eaf1f6" stroke="#3f7ea6" stroke-width="2"/>
+      <text x="48" y="381" font-weight="700">5. Preserve Uncertainty</text>
+      <text x="48" y="399" font-size="11" fill="#38424a">Visual sufficiency + calibrated rejection</text>
+    </g>
+    <g>
+      <rect x="30" y="430" width="300" height="56" rx="10" fill="#eef4ee" stroke="#4f8a5b" stroke-width="2"/>
+      <text x="48" y="453" font-weight="700">6. Update Carefully</text>
+      <text x="48" y="471" font-size="11" fill="#4a544d">Only verified matches update history</text>
+    </g>
+  </g>
+
+  <!-- Fan-out from step 5 to the four outcomes -->
+  <g stroke="#3f7ea6" stroke-width="1.6" fill="none" stroke-dasharray="4,3">
+    <line x1="330" y1="386" x2="520" y2="300"/>
+    <line x1="330" y1="386" x2="520" y2="353"/>
+    <line x1="330" y1="386" x2="520" y2="406"/>
+    <line x1="330" y1="386" x2="520" y2="459"/>
+  </g>
+
+  <text x="430" y="350" font-size="10.5" fill="#5a6670">decision</text>
+
+  <!-- Outcome chips -->
+  <g font-size="12.5" font-weight="700">
+    <rect x="520" y="280" width="210" height="40" rx="8" fill="#eef4ee" stroke="#4f8a5b" stroke-width="2"/>
+    <text x="540" y="305" fill="#2b332e">Verified existing</text>
+
+    <rect x="520" y="333" width="210" height="40" rx="8" fill="#fff8ea" stroke="#b98b3f" stroke-width="2"/>
+    <text x="540" y="358" fill="#5a4320">Uncertain</text>
+
+    <rect x="520" y="386" width="210" height="40" rx="8" fill="#fff8ea" stroke="#b98b3f" stroke-width="2"/>
+    <text x="540" y="411" fill="#5a4320">Unfamiliar (provisional)</text>
+
+    <rect x="520" y="439" width="210" height="40" rx="8" fill="#fff8ea" stroke="#b98b3f" stroke-width="2"/>
+    <text x="540" y="464" fill="#5a4320">Failure</text>
+  </g>
+
+  <!-- Verified -> step 6 -->
+  <path d="M520,300 C 410,300 370,360 330,440" stroke="#4f8a5b" stroke-width="2" fill="none" marker-end="url(#pArrow)"/>
+
+  <!-- Uncertain/Unfamiliar/Failure -> no-reward note -->
+  <g stroke="#8a7a52" stroke-width="1.6" fill="none" marker-end="url(#pArrowAmber)">
+    <line x1="625" y1="373" x2="625" y2="520"/>
+    <line x1="625" y1="426" x2="625" y2="520"/>
+    <line x1="625" y1="479" x2="625" y2="520"/>
+  </g>
+  <rect x="505" y="522" width="240" height="56" rx="10" fill="#f6efe6" stroke="#b98b3f" stroke-width="2"/>
+  <text x="625" y="546" text-anchor="middle" font-size="12.5" font-weight="700" fill="#5a4320">No reward, no claim</text>
+  <text x="625" y="564" text-anchor="middle" font-size="11" fill="#5a4320">May enter operator review</text>
+
+  <text x="390" y="605" text-anchor="middle" font-size="11.5" fill="#6a6a6a">A short tracker ID or a single location match alone must never create a permanent exclusive collection claim.</text>
+</svg>

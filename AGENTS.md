@@ -19,6 +19,7 @@ This file governs how an AI coding agent (or a human) should operate in this mon
 | How is it structured? | `docs/ARCHITECTURE.md` |
 | What order are we building it in? | `docs/ROADMAP.md` |
 | Prior research (animal ID, pilot plan) | `docs/research/` |
+| Which ML models are allowed, and how to evaluate them | `docs/research/model-license-screen.md`, `docs/research/model-evaluation-plan.md`, `tools/model-eval/` |
 | Significant decisions and why | `docs/decisions/` |
 
 ## Process
